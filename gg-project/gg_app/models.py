@@ -35,12 +35,12 @@ class Game(models.Model):
         return self.title 
 
 class Review(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews', null=True)
-    game = models.ForeignKey(Game, on_delete=models.CASCADE, related_name='reviews', null=True)
     name = models.CharField(max_length=250, default="no name", null=True)
     photo = models.CharField(max_length=250, default="no photo", null=True)
     body = models.CharField(max_length=250, default="no body", null=True)
-    rating = models.IntegerField( default=1, null=True)
+    rating = models.DecimalField(max_digits=2, decimal_places=1, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews', null=True)
+    game = models.ForeignKey(Game, on_delete=models.CASCADE, related_name='reviews', null=True)
 
     def __str__(self):
         return self.name 

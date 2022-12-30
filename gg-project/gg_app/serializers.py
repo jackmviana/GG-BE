@@ -42,7 +42,7 @@ class ReviewSerializer(serializers.HyperlinkedModelSerializer):
     )
     class Meta:
         model = Review
-        fields = ('id', 'name', 'photo', 'body', 'rating', 'games', 'users')        
+        fields = ('id', 'name', 'photo', 'body', 'rating', 'game', 'users', 'games')        
 
 class GameSerializer(serializers.HyperlinkedModelSerializer):
     reviews = ReviewSerializer(
@@ -51,6 +51,7 @@ class GameSerializer(serializers.HyperlinkedModelSerializer):
     )
     users = serializers.HyperlinkedRelatedField(
         view_name = 'user_detail',
+        many = True,
         read_only = True
     )
     class Meta:
@@ -58,16 +59,14 @@ class GameSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'title', 'description', 'rating', 'star_rating', 'photo', 'video', 'video_title', 'platform', 'genre', 'release_date', 'developer', 'age_rating', 'progress', 'completed', 'still_playing', 'reviews', 'users') 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
-    reviews = serializers.HyperlinkedRelatedField(
-        view_name = 'review_detail',
+    reviews = ReviewSerializer(
         many = True,
         read_only = True
     )
-    games = serializers.HyperlinkedRelatedField(
-        view_name = 'game_detail',
+    games = GameSerializer(
         many = True,
         read_only = True
     )
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'password', 'photo', 'games_played', 'reviews', 'games')
+        fields = ('id', 'username', 'email', 'password', 'photo', 'games_played', 'games', 'reviews')
