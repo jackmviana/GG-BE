@@ -9,4 +9,7 @@ urlpatterns = [
     path('games/<int:pk>', views.GameDetail.as_view(), name='game_detail'),
     path('reviews/', views.ReviewList.as_view(), name='review_list'),
     path('reviews/<int:pk>', views.ReviewDetail.as_view(), name='review_detail'),
+    path('reviewspost/', views.ReviewPost.as_view(), name='review_detail'),
+    path('reviewsupdate/<int:pk>', views.ReviewUpdate.as_view(), name='review_detail'),
+    path('reviewsdelete/<int:pk>', views.ReviewDelete.as_view(), name='review_detail'),
 ]
