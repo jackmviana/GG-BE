@@ -20,6 +20,19 @@ class GameDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Game.objects.all()
     serializer_class = GameSerializer
 
+class GameUpdate(generics.RetrieveUpdateDestroyAPIView):
+    def put(self,request,pk):
+        try:
+            gameObj=Game.objects.get(pk=pk)
+        except:
+            return Response("Not found in database")
+
+        serializeobj=GameSerializer(gameObj,data=request.data)
+        if serializeobj.is_valid():
+            serializeobj.save()
+            return Response(200)
+        return Response(serializeobj.errors)
+
 class ReviewPost(generics.RetrieveUpdateDestroyAPIView):
     def get(self, request):
         reviewObj=Review.objects.all()

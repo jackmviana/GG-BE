@@ -30,6 +30,7 @@ class Game(models.Model):
     developer = models.CharField(max_length=50, default='no developer')
     age_rating = models.CharField(max_length=50, default='no rating')
     progress = models.IntegerField()
+    track = models.CharField(max_length=50, default='not tracked')
     completed = models.BooleanField()
     still_playing = models.BooleanField()
     user = models.ManyToManyField(User, related_name="user")

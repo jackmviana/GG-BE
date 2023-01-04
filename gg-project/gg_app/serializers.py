@@ -56,7 +56,7 @@ class GameSerializer(serializers.HyperlinkedModelSerializer):
     )
     class Meta:
         model = Game
-        fields = ('id', 'title', 'description', 'rating', 'star_rating', 'photo', 'gp_photo_one', 'gp_photo_two', 'gp_photo_three', 'video', 'video_title', 'color', 'platform', 'genre', 'release_date', 'developer', 'age_rating', 'progress', 'completed', 'still_playing', 'reviews', 'users') 
+        fields = ('id', 'title', 'description', 'rating', 'star_rating', 'photo', 'gp_photo_one', 'gp_photo_two', 'gp_photo_three', 'video', 'video_title', 'color', 'platform', 'genre', 'release_date', 'developer', 'age_rating', 'progress', 'track', 'completed', 'still_playing', 'reviews', 'users') 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     reviews = ReviewSerializer(
